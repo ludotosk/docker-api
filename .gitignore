@@ -1,5 +1,6 @@
 /logs
 /.data
 .env
+/certbot
 
 node_modules

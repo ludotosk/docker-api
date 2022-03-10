@@ -28,3 +28,13 @@ services:
     # volumes:
       # - ./certbot/www/:/var/www/certbot/:rw
       # - ./certbot/conf/:/etc/letsencrypt/:rw
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      WATCHTOWER_SCHEDULE: 0 0 4 * * *
+      TZ: Europe/Brussels
+      WATCHTOWER_CLEANUP: "true"
+      WATCHTOWER_DEBUG: "true"
