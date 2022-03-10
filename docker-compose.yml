@@ -12,7 +12,7 @@ services:
     restart: always
     command: 'bash -c "cat /etc/nginx/conf.d/node.template > /etc/nginx/conf.d/default.conf && nginx -g ''daemon off;''"'
   node:
-    image: node:lts-alpine3.15
+    image: node:lts
     network_mode: host
     user: node
     working_dir: /home/node
@@ -23,7 +23,7 @@ services:
       - ./logs:/home/node/logs:rw
     restart: always
     command: 'node app/server.js'
-    certbot:
+  certbot:
       image: certbot/certbot:latest
       volumes:
         - ./certbot/www/:/var/www/certbot/:rw
