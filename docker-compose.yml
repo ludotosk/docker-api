@@ -20,14 +20,14 @@ services:
       - NODE_ENV=production
     volumes:
       - ./app:/home/node/app:ro
-      - ./logs:/home/node/logs
+      - ./logs:/home/node/logs:rw
     restart: always
     command: 'node app/server.js'
-  # certbot:
-    # image: certbot/certbot:latest
-    # volumes:
-      # - ./certbot/www/:/var/www/certbot/:rw
-      # - ./certbot/conf/:/etc/letsencrypt/:rw
+    certbot:
+      image: certbot/certbot:latest
+      volumes:
+        - ./certbot/www/:/var/www/certbot/:rw
+        - ./certbot/conf/:/etc/letsencrypt/:rw
   watchtower:
     image: containrrr/watchtower
     restart: always
